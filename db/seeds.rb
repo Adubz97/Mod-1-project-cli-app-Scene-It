@@ -41,7 +41,8 @@ bil_loc1 = MovieLocation.create(movie_id: billions.id, location_id: jersey.id, s
 bil_loc2 = MovieLocation.create(movie_id: billions.id, location_id: city_hall.id, scene_description: "Chuck meets with Commissioner Sansome")
 bil_loc3= MovieLocation.create(movie_id: billions.id, location_id: fdr.id, scene_description: "Taylor and Wendy have a meeting")
 
-
+user = User.create(name: "Christina", username: "chsohn")
+review = Review.create(user_id: user.id, movie_location_id: bil_loc1.id, review: "The scene was very picturesque and nice.", rating: 10)
 
 
 
