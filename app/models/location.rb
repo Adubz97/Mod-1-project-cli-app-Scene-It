@@ -22,4 +22,13 @@ class Location < ActiveRecord::Base
         end
     end
 
+    def formatted_print
+        #Prints a Location object 
+        puts "Name: #{self.name}"
+        puts "City: #{self.city}"
+        puts "Country: #{self.country}"
+        puts "Best Season to Visit: #{self.best_season_to_visit}"
+        puts "\n"
+    end
+
 end

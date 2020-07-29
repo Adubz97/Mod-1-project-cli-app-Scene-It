@@ -13,6 +13,12 @@ class Movie < ActiveRecord::Base
             movie.name.downcase == user_input_movie.downcase
         end
     end
-    
+
+    def formatted_print
+        #Prints a Movie object 
+        puts "Name: #{self.name}"
+        puts "Type: #{self.movie_or_tvshow}"
+        puts "\n"
+    end
 
 end
