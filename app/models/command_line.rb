@@ -86,5 +86,31 @@ class CommandLine
         end
     end
 
+    def search_for_movie_by_landmark
+        puts "Enter landmark name"
+        user_input_landmark = gets.chomp
+        puts "\n"
+        location_object = Location.find_location_by_name(user_input_landmark)
+        location_object.movies.map do |movies|
+            movies.formatted_print
+        end
+    end
 
+    def add_movie_to_database
+        puts "which movie or TV show you would like to add?"
+        user_input_movie_or_TVshow = gets.chomp
+        puts "\n"
+        puts "Is this a movie or a TV show?"
+        user_input_type = gets.chomp
+        puts "\n"
+       data = Movie.check_if_movie_in_database(user_input_movie_or_TVshow, user_input_type)
+        if data == true 
+            puts " This movie alreadys exists in the database"
+        else 
+            capitalized_movie_name = user_input_movie_or_TVshow.titleize
+            Movie.create(name: capitalized_movie_name,movie_or_tvshow: user_input_type)
+            puts "#{capitalized_movie_name} was successfully added to the database"
+
+        end
+    end
 end

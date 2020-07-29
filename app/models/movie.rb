@@ -18,18 +18,8 @@ class Movie < ActiveRecord::Base
         puts "\n"
     end
 
+    def self.check_if_movie_in_database(movie_name, movie_type)
+        Movie.exists?(["LOWER(name)=? AND LOWER(movie_or_tvshow)=?",movie_name.downcase,movie_type.downcase])
+    end
     
-
-
-
-
-
-
-    # def check_if_movie_in_database(movie_name, movie_type)
-    #     Movie.all.find do |movie|
-    #         movie.name == movie_name && movie.movie_or_tvshow == movie_type
-    #     end
-    #     end
-    # end
-
 end
