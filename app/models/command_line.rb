@@ -37,6 +37,16 @@ class CommandLine
         puts "2. Log in with username"
     end
 
+    def create_account #FIX so that inputs are saved to object instance
+        puts "What is your name?"
+        name_input = gets.chomp
+        puts "Create a username:"
+        username_input = gets.chomp
+        User.create(name: name_input, username: username_input)
+        puts "Welcome, #{name_input}!"
+        success_created_account_message
+    end
+
     def success_login_message
         puts "You've successfully logged into your account!"
     end
@@ -113,4 +123,40 @@ class CommandLine
 
         end
     end
+
+    def add_location_to_movie
+        puts "Which movie or TV show would you like to add a location to?"
+        user_input = gets.chomp
+        check = Movie.check_if_movie_name_in_database(user_input)
+        if check == false 
+            puts "This movie or TV show is not yet in the database!"
+            puts "Please add the movie or the TV show to the database."
+            puts "\n"
+            add_movie_to_database
+        else
+            puts "\n"
+            movie = Movie.find_movie(user_input)
+            puts "What is the name of the landmark?"
+            input_location = gets.chomp
+            puts "\n"
+            puts "What city is the landmark in?"
+            input_city = gets.chomp
+            puts "\n"
+            puts "What country is the landmark in?"
+            input_country = gets.chomp
+            puts "\n"
+            puts "What is the best time of year to visit? (Summer, Spring, Winter, Fall)"
+            input_season = gets.chomp
+            puts "\n"
+            puts "Describe the scene filmed at that landmark."
+            input_description = gets.chomp
+            puts "\n"
+            loc = Location.create(name: input_location, city: input_city, country: input_country, best_season_to_visit: input_season)
+            MovieLocation.create(movie_id: movie.id, location_id: loc.id, scene_description: input_description)
+            puts "\n"
+            puts "This location has been successfully added to the database!"
+        end
+    end
+
+
 end

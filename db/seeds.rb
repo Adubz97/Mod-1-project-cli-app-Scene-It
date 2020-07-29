@@ -42,8 +42,10 @@ bil_loc2 = MovieLocation.create(movie_id: billions.id, location_id: city_hall.id
 bil_loc3= MovieLocation.create(movie_id: billions.id, location_id: fdr.id, scene_description: "Taylor and Wendy have a meeting")
 
 user = User.create(name: "Christina", username: "chsohn")
-review = Review.create(user_id: user.id, movie_location_id: bil_loc1.id, review: "The scene was very picturesque and nice.", rating: 10)
-
+review = Review.create(user_id: user.id, movie_location_id: bil_loc1.id, review: "The scene was very picturesque and nice.", rating: 5)
+review1 = Review.create(user_id: user.id, movie_location_id: bil_loc2.id, review: "It is a nice place to visit when the weather is nice.", rating: 4)
+review3 = Review.create(user_id: user.id, movie_location_id: bil_loc3.id, review: "The backdrop is very dramatic. It's a good place for history buffs to learn about FDR.", rating: 4)
+review4 = Review.create(user_id: user.id, movie_location_id: hp4_loc.id, review: "The lake definitely looks better in the movie. It is pretty quiet and nice, though.", rating: 3)
 
 
 
