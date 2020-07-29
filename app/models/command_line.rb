@@ -42,9 +42,14 @@ class CommandLine
         name_input = gets.chomp
         puts "Create a username:"
         username_input = gets.chomp
+        binding.pry
         User.create(name: name_input, username: username_input)
         puts "Welcome, #{name_input}!"
         success_created_account_message
+    end
+
+    def login
+        #TODO
     end
 
     def success_login_message
@@ -55,7 +60,7 @@ class CommandLine
         puts "You've successfully created an account!"
     end
 
-    def present_menu
+    def main_menu
         puts "Please choose one of the menu options below:"
         puts "\n"
         puts "Menu:"
@@ -80,6 +85,7 @@ class CommandLine
         movie_object = Movie.find_movie(user_input)
         movie_object.locations.map do |location|
             location.formatted_print
+            #location.movie_locations.map do # FINISH LATER
         end
     end
     
