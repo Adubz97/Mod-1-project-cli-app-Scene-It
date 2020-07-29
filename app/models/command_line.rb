@@ -62,6 +62,29 @@ class CommandLine
         puts "10. Look up the most-visited film location"
     end
 
+    def search_for_locations_by_movie
+        puts "Enter a movie or TV show"
+        user_input = gets.chomp
+        # puts "#{user_input}"
+        puts "\n"
+        movie_object = Movie.find_movie(user_input)
+        movie_object.locations.map do |location|
+            location.formatted_print
+        end
+    end
     
-    
+    def search_for_movie_by_city
+        puts "Enter city name"
+        user_input_city = gets.chomp
+        puts "\n"
+        puts "Enter country name"
+        user_input_country = gets.chomp
+        puts "\n"
+        location_object = Location.find_location_by_city(user_input_city, user_input_country)
+        location_object.movies.map do |movies|
+            movies.formatted_print
+        end
+    end
+
+
 end

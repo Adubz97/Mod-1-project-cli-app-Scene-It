@@ -8,10 +8,7 @@ class Movie < ActiveRecord::Base
         # Takes in an argument of a string of user input (movie or TV show)
         # Find Movies whose name fits user_input
         # Return movie object
-
-        self.all.select do |movie|
-            movie.name.downcase == user_input_movie.downcase
-        end
+        Movie.find_by("LOWER(name)=?",user_input_movie.downcase)
     end
 
     def formatted_print
@@ -20,6 +17,13 @@ class Movie < ActiveRecord::Base
         puts "Type: #{self.movie_or_tvshow}"
         puts "\n"
     end
+
+    
+
+
+
+
+
 
     # def check_if_movie_in_database(movie_name, movie_type)
     #     Movie.all.find do |movie|
