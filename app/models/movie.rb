@@ -21,4 +21,11 @@ class Movie < ActiveRecord::Base
         puts "\n"
     end
 
+    # def check_if_movie_in_database(movie_name, movie_type)
+    #     Movie.all.find do |movie|
+    #         movie.name == movie_name && movie.movie_or_tvshow == movie_type
+    #     end
+    #     end
+    # end
+
 end

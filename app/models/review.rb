@@ -10,8 +10,4 @@ belongs_to :movie_location
 
 
 
-
-
-
-
 end

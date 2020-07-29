@@ -1,3 +1,9 @@
+require_relative "location.rb"
+require_relative "movie.rb"
+require_relative "movie_location.rb"
+require_relative "review.rb"
+require_relative "user.rb"
+
 class CommandLine
 
     def initialize
@@ -56,5 +62,6 @@ class CommandLine
         puts "10. Look up the most-visited film location"
     end
 
+    
     
 end
