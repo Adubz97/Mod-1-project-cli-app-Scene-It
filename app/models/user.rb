@@ -1,3 +1,4 @@
+require_relative "command_line.rb"
 class User < ActiveRecord::Base
 
 
@@ -30,14 +31,15 @@ has_many :movie_locations, through: :reviews
         movie = Movie.find_movie(movie_input)
         mov_loc = MovieLocation.where(location_id: location.id, movie_id: movie.id)
         if user_review_exists?(self.id, mov_loc[0].id) == true
-            puts "You've already reviewed this location! Do you want to update your review?"
+            puts "You've already reviewed this location! Do you want to update your review? (yes/no)"
+            old_review = Review.find_by(user_id: self.id, movie_location_id: mov_loc[0].id)
             answer = gets.chomp
             if answer == "yes"
-                #Insert update review method
-            else 
-                #Return to main menu
+                update_review(old_review)
+            else
+                return nil
             end
-        end
+        else
         puts "\n"
         puts "What is your review of this film location?"
         review1 = gets.chomp
@@ -49,7 +51,7 @@ has_many :movie_locations, through: :reviews
         puts "Movie/TV Show: #{movie.name}"
         puts "Location: #{location.name}" 
         new_review.print_formatted
-        #Insert delete method
+        end
     end
 
     def user_review_exists?(user_id, user_movie_location_id)
@@ -81,7 +83,15 @@ has_many :movie_locations, through: :reviews
         new_review = gets.chomp
         puts "Update your rating below: (1-5)"
         new_rating = gets.chomp
-        #review.update( # TODO)
+        review.update(review: new_review, rating: new_rating)
+        puts "You've successfully updated your review!"
+        puts "\n"
+        puts "Movie/TV Show: #{review.movie_location.movie.name}"
+        puts "Location: #{review.movie_location.location.name}" 
+        puts "Scene Description: #{review.movie_location.scene_description}"
+        puts "Review: #{review.review}"
+        puts "Rating: #{review.rating}"
+        puts "\n"
     end
 
 
