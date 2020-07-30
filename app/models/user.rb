@@ -1,4 +1,4 @@
-require_relative "command_line.rb"
+
 class User < ActiveRecord::Base
 
 

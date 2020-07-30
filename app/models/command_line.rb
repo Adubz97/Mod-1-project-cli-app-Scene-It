@@ -159,6 +159,17 @@ class CommandLine
     def search_for_locations_by_movie
         puts "Enter a movie or TV show"
         user_input = gets.chomp
+        #Check if exists in database
+        if Movie.find_movie(user_input) == nil
+            puts "This movie or TV show does not yet exist in the database!"
+            puts "Do you want to add this movie to the database? (y/n)"
+            answer = gets.chomp.downcase
+            if answer == "y"
+                add_movie_to_database
+            else 
+                return nil
+            end
+        else
         # puts "#{user_input}"
         puts "\n"
         movie_object = Movie.find_movie(user_input)
@@ -169,6 +180,7 @@ class CommandLine
                 puts "\n"
             end
         end
+    end
     end
     
     def search_for_movie_by_city
