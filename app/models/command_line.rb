@@ -127,8 +127,8 @@ class CommandLine
             MovieLocation.highest_rated_movie_location
         elsif user_choice == "10"
             MovieLocation.top_five_movie_locations
-        # elsif user_choice == ("exit" || "quit" || "!!!" || "q")
-        #     exit
+        elsif user_choice == ("exit" || "quit" || "!!!" || "q")
+            exit
         else main_menu_choice
         end
             self.return_to_menu? 
