@@ -44,7 +44,12 @@ class CommandLine
         name_input = gets.chomp
         puts "Create a username:"
         username_input = gets.chomp
-        binding.pry
+        #Check if username already exists
+        if User.exists?(["LOWER(username)=?", username_input.downcase]) == true
+            puts "You already have an account! Please log into your account."
+            login
+            puts "\n"
+        end
         User.create(name: name_input, username: username_input)
         puts "Welcome, #{name_input}!"
         success_created_account_message
@@ -70,10 +75,6 @@ class CommandLine
             puts "Location: #{review.movie_location.location.name}"
             review.print_formatted
         end
-    end
-
-    def reviews_by_location
-        
     end
 
 
