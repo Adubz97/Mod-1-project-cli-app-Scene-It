@@ -1,6 +1,8 @@
 Location.destroy_all
 Movie.destroy_all
 MovieLocation.destroy_all
+Review.destroy_all
+User.destroy_all
 
 
 louvre = Location.create(name:"Louvre",city:"Paris",country:"France",best_season_to_visit:"Spring")

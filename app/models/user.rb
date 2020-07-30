@@ -10,6 +10,7 @@ has_many :movie_locations, through: :reviews
             puts "You haven't written any reviews yet!"
         else
             reviews.each do |review|
+                
                 puts "Movie/TV Show: #{review.movie_location.movie.name}"
                 puts "Location: #{review.movie_location.location.name}" 
                 puts "Scene Description: #{review.movie_location.scene_description}"

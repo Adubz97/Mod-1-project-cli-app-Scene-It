@@ -1,5 +1,6 @@
 require_relative '../config/environment'
 
+
 puts "Press Y to run Scene It!"
 user_input = gets.chomp
 
