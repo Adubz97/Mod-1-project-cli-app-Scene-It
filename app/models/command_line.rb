@@ -50,7 +50,7 @@ class CommandLine
             login
             puts "\n"
         end
-        User.create(name: name_input, username: username_input)
+        @current_user = User.create(name: name_input, username: username_input)
         puts "Welcome, #{name_input}!"
         success_created_account_message
     end
@@ -62,7 +62,7 @@ class CommandLine
         user1 = User.find_by("LOWER(username)=?", input.downcase)
         puts "Welcome, #{user1.name}!"
         # Return user object
-        return user1
+        @current_user = user1
     end
 
     def find_user_reviews
@@ -93,15 +93,58 @@ class CommandLine
         puts "\n"
         puts "1. Search for film locations by movie or TV show"
         puts "2. Search for movies or TV shows filmed in a certain city"
-        puts "3. Add a movie or TV show to the database"
-        puts "4. Add a location to a movie or TV show"
-        puts "5. Review a film location"
-        puts "6. Show all my reviews"
-        puts "7. Look up all the reviews by film location"
-        puts "8. Find the highest-rated film location"
-        puts "9. Find the top-5 film locations"
-        puts "10. Look up the most-visited film location"
+        puts "3. Search for movies or TV show by landmark"
+        puts "4. Add a movie or TV show to the database"
+        puts "5. Add a location to a movie or TV show"
+        puts "6. Review a film location"
+        puts "7. Show all my reviews"
+        puts "8. Look up all the reviews by film location"
+        puts "9. Find the highest-rated film location"
+        puts "10. Find the top-5 film locations"
     end
+
+    def main_menu_choice
+
+        user_choice = gets.chomp
+
+        if user_choice == "1"
+            self.search_for_locations_by_movie
+        elsif user_choice == "2"
+            self.search_for_movie_by_city
+        elsif user_choice == "3"
+            self.search_for_movie_by_landmark
+        elsif user_choice == "4"
+            self.add_movie_to_database
+        elsif user_choice == "5"
+            self.add_location_to_movie
+        elsif user_choice == "6"
+            @current_user.write_a_review
+        elsif user_choice == "7"
+            @current_user.reviews
+        elsif user_choice == "8"
+            self.reviews_by_landmark
+        elsif user_choice == "9"
+            MovieLocation.highest_rated_movie_location
+        elsif user_choice == "10"
+            MovieLocation.top_five_movie_locations
+        # elsif user_choice == ("exit" || "quit" || "!!!" || "q")
+        #     exit
+        else main_menu_choice
+        end
+            self.return_to_menu? 
+            self.main_menu_choice
+    end
+
+    def return_to_menu?
+        puts "Would you like to return to the main menu?(Y/N)"
+        user_input = gets.chomp.downcase
+        if user_input == "y"
+            self.main_menu
+        else
+            exit
+        end
+    end
+
 
     def search_for_locations_by_movie
         puts "Enter a movie or TV show"
@@ -126,6 +169,7 @@ class CommandLine
         user_input_country = gets.chomp
         puts "\n"
         location_object = Location.find_location_by_city(user_input_city, user_input_country)
+        puts "All movies or TV show filmed in #{user_input_city.titleize}, #{user_input_country.titleize}:"
         location_object.movies.map do |movies|
             movies.formatted_print
         end

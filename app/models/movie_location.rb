@@ -22,9 +22,14 @@ class MovieLocation < ActiveRecord::Base
 
     def self.highest_rated_movie_location
         #Find movie location with highest average rating
-        self.all.max_by do |movielocation|
+        best_movie_location = self.all.max_by do |movielocation|
             movielocation.average_rating
         end
+        puts "\n"
+        puts "Highest rated movie or TV show location: #{best_movie_location.location.name}"
+        puts "Name of movie or TV show: #{best_movie_location.movie.name}"
+        puts "Scene description: #{best_movie_location.scene_description}"
+        puts "\n"
     end
 
     def self.top_five_movie_locations

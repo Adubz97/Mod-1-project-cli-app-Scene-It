@@ -6,7 +6,7 @@ user_input = gets.chomp
 if user_input == "Y"
     command = CommandLine.new
 end
-
+#binding.pry
 option1_input = gets.chomp
 
 if option1_input == "1"
@@ -19,6 +19,5 @@ elsif option1_input == "2"
     command.main_menu
 end
 
+command.main_menu_choice
 
-
-#binding.pry
