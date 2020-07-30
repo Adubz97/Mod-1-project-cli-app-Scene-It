@@ -6,6 +6,8 @@ require_relative "user.rb"
 
 class CommandLine
 
+    attr_accessor :user
+
     def initialize
         self.logo
         self.welcome_message
@@ -37,7 +39,7 @@ class CommandLine
         puts "2. Log in with username"
     end
 
-    def create_account #FIX so that inputs are saved to object instance
+    def create_account 
         puts "What is your name?"
         name_input = gets.chomp
         puts "Create a username:"
@@ -49,8 +51,31 @@ class CommandLine
     end
 
     def login
-        #TODO
+        puts "Enter username"
+        input = gets.chomp
+        #Check if in database
+        user1 = User.find_by("LOWER(username)=?", input.downcase)
+        puts "Welcome, #{user1.name}!"
+        # Return user object
+        return user1
     end
+
+    def find_user_reviews
+        user = login
+        puts "\n"
+        puts "Here are your reviews:"
+        puts "\n"
+        user.reviews.each do |review|
+            puts "Movie/TV Show Title: #{review.movie_location.movie.name}"
+            puts "Location: #{review.movie_location.location.name}"
+            review.print_formatted
+        end
+    end
+
+    def reviews_by_location
+        
+    end
+
 
     def success_login_message
         puts "You've successfully logged into your account!"
@@ -85,7 +110,10 @@ class CommandLine
         movie_object = Movie.find_movie(user_input)
         movie_object.locations.map do |location|
             location.formatted_print
-            #location.movie_locations.map do # FINISH LATER
+            location.movie_locations.map do |movielocation|
+                puts "Scene Description: #{movielocation.scene_description}"
+                puts "\n"
+            end
         end
     end
     
@@ -109,6 +137,20 @@ class CommandLine
         location_object = Location.find_location_by_name(user_input_landmark)
         location_object.movies.map do |movies|
             movies.formatted_print
+        end
+    end
+
+    def reviews_by_landmark
+        puts "Find all reviews by searching for a landmark"
+        puts "Landmark:"
+        user_input_landmark = gets.chomp
+        location_object = Location.find_location_by_name(user_input_landmark)
+        movie_loc = MovieLocation.where(location_id: location_object.id)
+        binding.pry #FIX LATER!!!
+        movie_loc.each do |movielocation|
+            movielocation.reviews.each do |review|
+                puts review
+            end
         end
     end
 
@@ -163,6 +205,8 @@ class CommandLine
             puts "This location has been successfully added to the database!"
         end
     end
+
+
 
 
 end

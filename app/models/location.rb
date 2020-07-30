@@ -28,7 +28,6 @@ class Location < ActiveRecord::Base
         puts "City: #{self.city}"
         puts "Country: #{self.country}"
         puts "Best Season to Visit: #{self.best_season_to_visit}"
-        puts "\n"
     end
 
 end
