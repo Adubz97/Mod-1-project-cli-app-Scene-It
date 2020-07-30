@@ -27,14 +27,31 @@ class MovieLocation < ActiveRecord::Base
         end
         puts "\n"
         puts "Highest rated movie or TV show location: #{best_movie_location.location.name}"
+        puts "Average rating: #{best_movie_location.average_rating}/5"
         puts "Name of movie or TV show: #{best_movie_location.movie.name}"
         puts "Scene description: #{best_movie_location.scene_description}"
         puts "\n"
     end
 
     def self.top_five_movie_locations
-        self.all.limit(3) do |movielocation|
+        array = self.all.max_by(5) do |movielocation|
             movielocation.average_rating
         end
+        puts "\n"
+        puts "Top Five Movie Locations in the World:"
+        puts "\n"
+        array.each do |movielocation|    
+            puts "\n"
+            puts "Location: #{movielocation.location.name}"
+            puts "City: #{movielocation.location.city}"
+            puts "Country: #{movielocation.location.country}"
+            puts "Average rating: #{movielocation.average_rating}/5"
+            puts "Name of movie or TV show: #{movielocation.movie.name}"
+            puts "Scene description: #{movielocation.scene_description}"
+            puts "\n"
+        end
+        #MovieLocation.average_rating #Refactor
     end
+
+
 end

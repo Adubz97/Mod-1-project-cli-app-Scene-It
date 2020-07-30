@@ -16,10 +16,17 @@ GEM
     concurrent-ruby (1.1.6)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    lolcat (100.0.1)
+      manpages (~> 0.6.1)
+      optimist (~> 3.0.0)
+      paint (~> 2.1)
+    manpages (0.6.1)
     method_source (1.0.0)
     minitest (5.14.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    optimist (3.0.1)
+    paint (2.2.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -48,6 +55,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  lolcat
   pry
   rake
   require_all

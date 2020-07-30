@@ -9,8 +9,9 @@ has_many :movie_locations, through: :reviews
         if reviews == []
             puts "You haven't written any reviews yet!"
         else
+            puts "Your Reviews:"
+            puts "\n"
             reviews.each do |review|
-                
                 puts "Movie/TV Show: #{review.movie_location.movie.name}"
                 puts "Location: #{review.movie_location.location.name}" 
                 puts "Scene Description: #{review.movie_location.scene_description}"
@@ -48,6 +49,7 @@ has_many :movie_locations, through: :reviews
         puts "Movie/TV Show: #{movie.name}"
         puts "Location: #{location.name}" 
         new_review.print_formatted
+        #Insert delete method
     end
 
     def user_review_exists?(user_id, user_movie_location_id)
@@ -55,7 +57,33 @@ has_many :movie_locations, through: :reviews
     end
 
 
-    #Delete a review
+    def delete_review
+        puts "To delete a review, enter the name of the movie location that you reviewed:"
+        mov_loc_name = gets.chomp
+        loc = Location.find_by(name: mov_loc_name) #remove
+        mov_loc = MovieLocation.find_by(location_id: loc.id) #remove
+        review = Review.find_by(movie_location_id: mov_loc.id, user_id: self.id)
+        puts "\n"
+        puts "Movie/TV Show: #{review.movie_location.movie.name}"
+        puts "Location: #{review.movie_location.location.name}" 
+        puts "Scene Description: #{review.movie_location.scene_description}"
+        review.print_formatted
+        puts "Are you sure you want to delete this review? (Y/N)"
+        answer = gets.chomp.downcase
+        if answer == "y"
+            review.destroy
+            puts "The review has been deleted!"
+        end
+    end
+
+    def update_review(review)
+        puts "Write your updated review below:"
+        new_review = gets.chomp
+        puts "Update your rating below: (1-5)"
+        new_rating = gets.chomp
+        #review.update( # TODO)
+    end
+
 
 
 end

@@ -101,6 +101,9 @@ class CommandLine
         puts "8. Look up all the reviews by film location"
         puts "9. Find the highest-rated film location"
         puts "10. Find the top-5 film locations"
+        puts "11. Delete a review"
+        puts "12. Exit program"
+        puts "\n"
     end
 
     def main_menu_choice
@@ -127,9 +130,16 @@ class CommandLine
             MovieLocation.highest_rated_movie_location
         elsif user_choice == "10"
             MovieLocation.top_five_movie_locations
+        elsif user_choice == "11"
+            @current_user.delete_review
+        elsif user_choice == "12"
+            exit
         elsif user_choice == ("exit" || "quit" || "!!!" || "q")
             exit
-        else main_menu_choice
+        else 
+            puts "\n"
+            puts "Please enter the number that corresponds with menu option."
+            main_menu_choice
         end
             self.return_to_menu? 
             self.main_menu_choice
@@ -191,10 +201,16 @@ class CommandLine
         user_input_landmark = gets.chomp
         location_object = Location.find_location_by_name(user_input_landmark)
         movie_loc = MovieLocation.where(location_id: location_object.id)
-        binding.pry #FIX LATER!!!
+        #binding.pry #FIX LATER!!!
         movie_loc.each do |movielocation|
             movielocation.reviews.each do |review|
-                puts review
+                puts "\n"
+                puts "Movie/TV Show: #{review.movie_location.movie.name}"
+                puts "Location: #{review.movie_location.location.name}" 
+                puts "Scene Description: #{review.movie_location.scene_description}"
+                puts "Review: #{review.review}"
+                puts "Rating: #{review.rating}"
+                puts "\n"
             end
         end
     end
