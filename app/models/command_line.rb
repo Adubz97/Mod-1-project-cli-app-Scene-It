@@ -211,9 +211,20 @@ class CommandLine
         puts "Find all reviews by searching for a landmark"
         puts "Landmark:"
         user_input_landmark = gets.chomp
-        location_object = Location.find_location_by_name(user_input_landmark)
+        if Location.find_location_by_name(user_input_landmark) == nil
+            puts "This landmark does not yet exist in the database!"
+            return nil
+            # puts "Do you want to add this landmark to the database?(y/n)"
+            # answer = gets.chomp.downcase
+            # if answer == "y"
+            #     add_location_to_movie
+            # else 
+            #     return nil
+            # end
+        else
+            location_object = Location.find_location_by_name(user_input_landmark)
+        end
         movie_loc = MovieLocation.where(location_id: location_object.id)
-        #binding.pry #FIX LATER!!!
         movie_loc.each do |movielocation|
             movielocation.reviews.each do |review|
                 puts "\n"
@@ -228,7 +239,7 @@ class CommandLine
     end
 
     def add_movie_to_database
-        puts "which movie or TV show you would like to add?"
+        puts "Which movie or TV show you would like to add?"
         user_input_movie_or_TVshow = gets.chomp
         puts "\n"
         puts "Is this a movie or a TV show?"
