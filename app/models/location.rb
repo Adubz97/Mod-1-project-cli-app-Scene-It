@@ -9,17 +9,15 @@ class Location < ActiveRecord::Base
         # Returns Location object
         # self.all.select do |location|
         #     location.name.downcase == user_input_location_name.downcase
-         self.all.find_by("LOWER(name)=?",user_input_location_name.downcase)
+         Location.find_by("LOWER(name)=?",user_input_location_name.downcase)
     end
 
     def self.find_location_by_city(user_input_city, user_input_country)
         # Takes in an argument city and country
         # Find Locations whose city and country match user input
         # Return Location object
-        self.all.find do |location|
-            location.city.downcase == user_input_city.downcase && 
-            location.country.downcase == user_input_country.downcase
-        end
+        Location.find_by(["LOWER(city)=? AND LOWER(country)=?",
+            user_input_city.downcase,user_input_country.downcase])
     end
 
     def formatted_print

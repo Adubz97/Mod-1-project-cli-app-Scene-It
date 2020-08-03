@@ -109,32 +109,32 @@ class CommandLine
     def main_menu_choice
 
         user_choice = gets.chomp
-
-        if user_choice == "1"
+        case user_choice
+        when "1"
             self.search_for_locations_by_movie
-        elsif user_choice == "2"
+        when "2"
             self.search_for_movie_by_city
-        elsif user_choice == "3"
+        when "3"
             self.search_for_movie_by_landmark
-        elsif user_choice == "4"
+        when "4"
             self.add_movie_to_database
-        elsif user_choice == "5"
+        when "5"
             self.add_location_to_movie
-        elsif user_choice == "6"
+        when "6"
             @current_user.write_a_review
-        elsif user_choice == "7"
+        when "7"
             @current_user.reviews
-        elsif user_choice == "8"
+        when "8"
             self.reviews_by_landmark
-        elsif user_choice == "9"
+        when "9"
             MovieLocation.highest_rated_movie_location
-        elsif user_choice == "10"
+        when "10"
             MovieLocation.top_five_movie_locations
-        elsif user_choice == "11"
+        when "11"
             @current_user.delete_review
-        elsif user_choice == "12"
+        when "12"
             exit
-        elsif user_choice == ("exit" || "quit" || "!!!" || "q")
+        when "exit", "quit", "!!!", "q"
             exit
         else 
             puts "\n"
