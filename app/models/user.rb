@@ -62,9 +62,8 @@ has_many :movie_locations, through: :reviews
     def delete_review
         puts "To delete a review, enter the name of the movie location that you reviewed:"
         mov_loc_name = gets.chomp
-        loc = Location.find_by(name: mov_loc_name) #remove
-        mov_loc = MovieLocation.find_by(location_id: loc.id) #remove
-        review = Review.find_by(movie_location_id: mov_loc.id, user_id: self.id)
+        review = Review.joins(movie_location: :location)
+            .where(locations: {name: mov_loc_name}, reviews: {user_id: self.id})[0]
         puts "\n"
         puts "Movie/TV Show: #{review.movie_location.movie.name}"
         puts "Location: #{review.movie_location.location.name}" 
