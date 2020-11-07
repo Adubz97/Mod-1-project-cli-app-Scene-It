@@ -1,17 +1,15 @@
 require_relative '../config/environment'
 
-#binding.pry
 
 
-puts "Press any key to run Scene It! Type 'exit' to exit program."
+
+puts " \n Press any key to run Scene It! Type 'exit' to exit program."
 user_input = gets.chomp
 if user_input == "exit"
     exit
 else
     command = CommandLine.new
 end
-
-#binding.pry
 
 option1_input = gets.chomp
 

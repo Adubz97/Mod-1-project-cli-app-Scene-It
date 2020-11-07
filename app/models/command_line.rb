@@ -44,7 +44,7 @@ class CommandLine
         name_input = gets.chomp
         puts "Create a username:"
         username_input = gets.chomp
-        
+
         if User.exists?(["LOWER(username)=?", username_input.downcase]) == true
             puts "You already have an account! Please log into your account."
             login
@@ -57,13 +57,25 @@ class CommandLine
 
     def login
         puts "Enter username"
-        input = gets.chomp
+        username_login_input = gets.chomp
         #Check if in database
-        user1 = User.find_by("LOWER(username)=?", input.downcase)
-        puts "Welcome, #{user1.name}!"
-        # Return user object
-        @current_user = user1
+        if user1 = User.find_by("LOWER(username)=?", username_login_input.downcase)
+            puts "Welcome, #{user1.name}!"
+            success_login_message
+            # Return user object
+            @current_user = user1
+        else
+            puts "This account does not exist! lets create a new one."
+            puts "\n"
+            create_account
+        end
     end
+
+
+
+
+
+
 
     def find_user_reviews
         user = login
