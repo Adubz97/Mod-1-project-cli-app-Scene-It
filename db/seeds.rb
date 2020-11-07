@@ -45,6 +45,7 @@ bil_loc3= MovieLocation.create(movie_id: billions.id, location_id: fdr.id, scene
 
 user = User.create(name: "Christina", username: "chsohn")
 user2 = User.create(name: "Abdullah", username: "Adubz")
+
 review = Review.create(user_id: user.id, movie_location_id: bil_loc1.id, review: "The scene was very picturesque and nice.", rating: 5)
 review1 = Review.create(user_id: user.id, movie_location_id: bil_loc2.id, review: "It is a nice place to visit when the weather is nice.", rating: 4)
 review3 = Review.create(user_id: user.id, movie_location_id: bil_loc3.id, review: "The backdrop is very dramatic. It's a good place for history buffs to learn about FDR.", rating: 4)

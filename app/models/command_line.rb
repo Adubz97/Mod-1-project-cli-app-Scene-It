@@ -16,13 +16,13 @@ class CommandLine
 
     def logo
         puts "
-        _______.  ______  _______ .__   __.  _______     __  .___________. __  
-        /       | /      ||   ____||  \ |  | |   ____|   |  | |           ||  | 
-       |   (----`|  ,----'|  |__   |   \|  | |  |__      |  | `---|  |----`|  | 
-        \   \    |  |     |   __|  |  . `  | |   __|     |  |     |  |     |  | 
-    .----)   |   |  `----.|  |____ |  |\   | |  |____    |  |     |  |     |__| 
-    |_______/     \______||_______||__| \__| |_______|   |__|     |__|     (__) 
-    
+        _______.  ______  _______ .__   __.  _______     __  .___________. __
+        /       | /      ||   ____||  \ |  | |   ____|   |  | |           ||  |
+       |   (----`|  ,----'|  |__   |   \|  | |  |__      |  | `---|  |----`|  |
+        \   \    |  |     |   __|  |  . `  | |   __|     |  |     |  |     |  |
+    .----)   |   |  `----.|  |____ |  |\   | |  |____    |  |     |  |     |__|
+    |_______/     \______||_______||__| \__| |_______|   |__|     |__|     (__)
+
         "
     end
 
@@ -39,12 +39,12 @@ class CommandLine
         puts "2. Log in with username"
     end
 
-    def create_account 
+    def create_account
         puts "What is your name?"
         name_input = gets.chomp
         puts "Create a username:"
         username_input = gets.chomp
-        #Check if username already exists
+        
         if User.exists?(["LOWER(username)=?", username_input.downcase]) == true
             puts "You already have an account! Please log into your account."
             login
@@ -136,12 +136,12 @@ class CommandLine
             exit
         when "exit", "quit", "!!!", "q"
             exit
-        else 
+        else
             puts "\n"
             puts "Please enter the number that corresponds with menu option."
             main_menu_choice
         end
-            self.return_to_menu? 
+            self.return_to_menu?
             self.main_menu_choice
     end
 
@@ -166,7 +166,7 @@ class CommandLine
             answer = gets.chomp.downcase
             if answer == "y"
                 add_movie_to_database
-            else 
+            else
                 return nil
             end
         else
@@ -182,7 +182,7 @@ class CommandLine
         end
     end
     end
-    
+
     def search_for_movie_by_city
         puts "Enter city name"
         user_input_city = gets.chomp
@@ -218,7 +218,7 @@ class CommandLine
             # answer = gets.chomp.downcase
             # if answer == "y"
             #     add_location_to_movie
-            # else 
+            # else
             #     return nil
             # end
         else
@@ -229,7 +229,7 @@ class CommandLine
             movielocation.reviews.each do |review|
                 puts "\n"
                 puts "Movie/TV Show: #{review.movie_location.movie.name}"
-                puts "Location: #{review.movie_location.location.name}" 
+                puts "Location: #{review.movie_location.location.name}"
                 puts "Scene Description: #{review.movie_location.scene_description}"
                 puts "Review: #{review.review}"
                 puts "Rating: #{review.rating}"
@@ -246,9 +246,9 @@ class CommandLine
         user_input_type = gets.chomp
         puts "\n"
        data = Movie.check_if_movie_in_database(user_input_movie_or_TVshow, user_input_type)
-        if data == true 
+        if data == true
             puts " This movie alreadys exists in the database"
-        else 
+        else
             capitalized_movie_name = user_input_movie_or_TVshow.titleize
             Movie.create(name: capitalized_movie_name,movie_or_tvshow: user_input_type)
             puts "#{capitalized_movie_name} was successfully added to the database"
@@ -260,7 +260,7 @@ class CommandLine
         puts "Which movie or TV show would you like to add a location to?"
         user_input = gets.chomp
         check = Movie.check_if_movie_name_in_database(user_input)
-        if check == false 
+        if check == false
             puts "This movie or TV show is not yet in the database!"
             puts "Please add the movie or the TV show to the database."
             puts "\n"
