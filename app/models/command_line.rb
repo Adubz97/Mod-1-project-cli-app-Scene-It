@@ -51,7 +51,7 @@ class CommandLine
             puts "\n"
         end
         @current_user = User.create(name: name_input, username: username_input)
-        puts "Welcome, #{name_input}!"
+        puts " \n Welcome, #{name_input}!"
         success_created_account_message
     end
 
@@ -65,8 +65,7 @@ class CommandLine
             # Return user object
             @current_user = user1
         else
-            puts "This account does not exist! lets create a new one."
-            puts "\n"
+            puts " \n This account does not exist! lets create a new one. \n \n"
             create_account
         end
     end
