@@ -10,11 +10,10 @@ has_many :movie_locations, through: :reviews
         if reviews == []
             puts "You haven't written any reviews yet!"
         else
-            puts "Your Reviews:"
-            puts "\n"
+            puts "\nYour Reviews: \n"
             reviews.each do |review|
-                puts "Movie/TV Show: #{review.movie_location.movie.name}"
-                puts "Location: #{review.movie_location.location.name}" 
+                puts "\nMovie/TV Show: #{review.movie_location.movie.name}"
+                puts "Location: #{review.movie_location.location.name}"
                 puts "Scene Description: #{review.movie_location.scene_description}"
                 review.print_formatted
             end
@@ -25,8 +24,7 @@ has_many :movie_locations, through: :reviews
         puts "Which location would you like to review?"
         location_input = gets.chomp
         location = Location.find_location_by_name(location_input)
-        puts "\n"
-        puts "Which movie or TV show does the location appear in?"
+        puts " \nWhich movie or TV show does the location appear in?"
         movie_input = gets.chomp
         movie = Movie.find_movie(movie_input)
         mov_loc = MovieLocation.where(location_id: location.id, movie_id: movie.id)
@@ -40,16 +38,15 @@ has_many :movie_locations, through: :reviews
                 return nil
             end
         else
-        puts "\n"
-        puts "What is your review of this film location?"
+
+        puts " \nWhat is your review of this film location? \n"
         review1 = gets.chomp
-        puts "\n"
-        puts "What is your rating of this film location? (1 to 5, 5 being the highest)"
+
+        puts "\nWhat is your rating of this film location? (1 to 5, 5 being the highest)"
         rating1 = gets.chomp
         new_review = Review.create(user_id: self.id, movie_location_id: mov_loc[0].id, review: review1, rating: rating1)
-        puts "\n"
-        puts "Movie/TV Show: #{movie.name}"
-        puts "Location: #{location.name}" 
+        puts "\nMovie/TV Show: #{movie.name}"
+        puts "Location: #{location.name}"
         new_review.print_formatted
         end
     end
@@ -58,22 +55,20 @@ has_many :movie_locations, through: :reviews
         Review.exists?(user_id: user_id, movie_location_id: user_movie_location_id)
     end
 
-
     def delete_review
         puts "To delete a review, enter the name of the movie location that you reviewed:"
         mov_loc_name = gets.chomp
         review = Review.joins(movie_location: :location)
             .where(locations: {name: mov_loc_name}, reviews: {user_id: self.id})[0]
-        puts "\n"
-        puts "Movie/TV Show: #{review.movie_location.movie.name}"
-        puts "Location: #{review.movie_location.location.name}" 
+        puts " \nMovie/TV Show: #{review.movie_location.movie.name}"
+        puts "Location: #{review.movie_location.location.name}"
         puts "Scene Description: #{review.movie_location.scene_description}"
         review.print_formatted
-        puts "Are you sure you want to delete this review? (Y/N)"
+        puts "\nAre you sure you want to delete this review? (Y/N)"
         answer = gets.chomp.downcase
         if answer == "y"
             review.destroy
-            puts "The review has been deleted!"
+            puts "\nThe review has been deleted!"
         end
     end
 
@@ -83,16 +78,13 @@ has_many :movie_locations, through: :reviews
         puts "Update your rating below: (1-5)"
         new_rating = gets.chomp
         review.update(review: new_review, rating: new_rating)
-        puts "You've successfully updated your review!"
-        puts "\n"
+        puts "You've successfully updated your review!\n"
+
         puts "Movie/TV Show: #{review.movie_location.movie.name}"
-        puts "Location: #{review.movie_location.location.name}" 
+        puts "Location: #{review.movie_location.location.name}"
         puts "Scene Description: #{review.movie_location.scene_description}"
         puts "Review: #{review.review}"
-        puts "Rating: #{review.rating}"
-        puts "\n"
+        puts "Rating: #{review.rating}\n"
     end
-
-
 
 end

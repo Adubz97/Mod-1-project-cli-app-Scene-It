@@ -3,7 +3,7 @@ require_relative '../config/environment'
 
 
 
-puts " \n Press any key to run Scene It! Type 'exit' to exit program."
+puts " \nPress any key to run Scene It! Type 'exit' to exit program."
 user_input = gets.chomp
 if user_input == "exit"
     exit

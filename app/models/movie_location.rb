@@ -21,7 +21,6 @@ class MovieLocation < ActiveRecord::Base
     end
 
     def self.highest_rated_movie_location
-        #Find movie location with highest average rating
         best_movie_location = self.all.max_by do |movielocation|
             movielocation.average_rating
         end
@@ -34,23 +33,22 @@ class MovieLocation < ActiveRecord::Base
     end
 
     def self.top_five_movie_locations
+
         array = self.all.max_by(5) do |movielocation|
             movielocation.average_rating
         end
-        puts "\n"
-        puts "Top Five Movie Locations in the World:"
-        puts "\n"
-        array.each do |movielocation|    
-            puts "\n"
-            puts "Location: #{movielocation.location.name}"
+        
+        puts "\nTop Five Movie Locations in the World:\n"
+        array.each do |movielocation|
+
+            puts "\nLocation: #{movielocation.location.name}"
             puts "City: #{movielocation.location.city}"
             puts "Country: #{movielocation.location.country}"
             puts "Average rating: #{movielocation.average_rating}/5"
             puts "Name of movie or TV show: #{movielocation.movie.name}"
-            puts "Scene description: #{movielocation.scene_description}"
-            puts "\n"
+            puts "Scene description: #{movielocation.scene_description}\n"
+
         end
-        #MovieLocation.average_rating #Refactor
     end
 
 
