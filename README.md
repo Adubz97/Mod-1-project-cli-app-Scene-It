@@ -9,12 +9,12 @@ Scene It! is a CLI application designed to find movie and TV show film locations
 
 - Fork and clone this repo
 - To run this application, cd into the file directory
-  -bundle install
-  -run "rake db:migrate"
-  -run "rake db:seed" 
+  - bundle install
+  - run "rake db:migrate"
+  - run "rake db:seed" 
   - run "ruby bin/run.rb" in the file directory.
   
-**Enter "bash | lolcat" in the terminal to create the rainbow-colored text effect. Enjoy!
+**Enter "bash | lolcat" in the terminal to create the rainbow-colored text effect. Enjoy!**
 
 ## Scene It! DEMO
 
