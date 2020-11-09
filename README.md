@@ -34,7 +34,7 @@ Scene It! is a CLI application designed to find movie and TV show film locations
 ## Scene It! DEMO (coming Soon...)
 
 
-## Authors: 
+## Authors
 Abdullah Albasha (https://github.com/Adubz97)
 
 Christina Sohn (https://github.com/chsohn15)
