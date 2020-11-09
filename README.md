@@ -4,6 +4,8 @@
 
 Scene It! is a CLI application designed to find movie and TV show film locations from all around the world! Movie fans can search for film locations by city or landmark, and they can write reviews of film locations that they have visited themselves. This database also allows users to look up highest-rated reviews and add more locations and movies to the database. 
 
+  Available features:
+  - ** **
 
 ## Installation
 
