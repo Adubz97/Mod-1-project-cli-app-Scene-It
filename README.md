@@ -34,10 +34,10 @@ Scene It! is a CLI application designed to find movie and TV show film locations
   
 **Enter "bash | lolcat" in the terminal to create the rainbow-colored text effect. Enjoy!**
 
-## Authors
-- 👤 Abdullah Albasha (https://github.com/Adubz97)
+## 👤 Authors
+- Abdullah Albasha (https://github.com/Adubz97)
 
-- 👤 Christina Sohn (https://github.com/chsohn15)
+- Christina Sohn (https://github.com/chsohn15)
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/Adubz97/cli-app-Scene-it/issues. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
